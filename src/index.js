@@ -64,8 +64,7 @@ const startApp = () => {
         }
 
         setTimeout(async () => {
-            let role = await models.Role.findOne({ roleName: 'admin' });
-            const user = await models.User.findOne({ roleId: role._id });
+            const user = await models.User.findOne({  email: "admin@gmail.com" });
             if (!user) {
                 models.User.create({
                     email: "admin@gmail.com",
