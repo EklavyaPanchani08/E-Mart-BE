@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express'
 
 import RoleSchema from './role'
 import UserSchema from './user'
+import ProductSchema from './product'
 
 
 const linkSchema = gql`
@@ -32,6 +33,7 @@ const linkSchema = gql`
 export default [
     linkSchema,
     RoleSchema,
-    UserSchema
-    
+    UserSchema,
+    ProductSchema
+
 ]
