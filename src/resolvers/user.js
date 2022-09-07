@@ -3,6 +3,7 @@ import { UserInputError } from "apollo-server-express";
 import { combineResolvers } from 'graphql-resolvers';
 import { isAdmin, isAuthenticated } from "./auth";
 import { FilterQuery } from './../functions/generateFilterQuery';
+import { fileUpload } from "../functions/fileUpload";
 const generateToken = async (user, expiresIn) => {
   const { id, email } = user;
   const token = await jwt?.sign({ id, email }, process.env.SECRET, {
@@ -53,7 +54,8 @@ export default {
     },
 
     createUser: combineResolvers((_, { input }, { models }) => {
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
+        input.photo = await fileUpload(input.photo)
         models?.User.findOne({ email: input?.email, isDeleted: false }).exec((err, res) => {
           if (err) reject(err);
           else if (res) reject("This email is already exits.");

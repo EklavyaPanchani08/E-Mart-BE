@@ -24,9 +24,14 @@ type Product{
     category: String
     color: String
     }
+    type ProductPaginate {
+		count: Int
+		data: [Product]
+	}
 
     extend type Query  {
-        getAllProduct:[Product]
+        getProduct(id:ID):Product
+		getAllProduct(page: Int, limit: Int, sort: Sort, search: String): ProductPaginate
     }
 
     extend type Mutation{

@@ -8,6 +8,7 @@ import _ from "lodash";
 
 const Tables = {
 	userstbl: ["firstName", "lastName", "email"],
+	producttbl: ["name", "category", "color"],
 };
 
 export const FilterQuery = (filterString, tableKey) => {
